@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color: antiquewhite;
+    }
+    #imageGallery>img{
+        width: 800px;
+    }
+    #imageGallery img {
+        display: none;
+    }
+
+    #imageGallery img.active {
+        display: block;
+    }
+
+    #timer {
+        margin-top: 40px;
+        font-size: 45px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+
+    <div id="imageGallery">
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKRzHHirDMQU_v0RHsILVKVt2O2RzpYR_EA_wiH5XaZQiOO_SBqb_8clGzD2cNXMTFoB0&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIAFMa5ZR187DSks5_kRPFkV0vpNZQudl09Q&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTExtoLVhMIfPRj_8d5RQKF2qjwUbuYL2tZTg&usqp=CAU">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReyNj21BsjucUVU1cHF-rasiFD5nxb0vCeXw&usqp=CAU">
+    </div>
+    <div id="timer">10</div>
+
+
+</body>
+<script>
+    var imageCount = 5; 
+    var currentIndex = 0;
+
+    function moveToNextImage() {
+        var nextIndex = (currentIndex + 1) % imageCount;
+        document.getElementById("imageGallery").children[currentIndex].classList.remove("active");
+        document.getElementById("imageGallery").children[nextIndex].classList.add("active");
+        currentIndex = nextIndex;
+
+        var timerCount = parseInt(document.getElementById("timer").innerHTML);
+        if (timerCount === 1) {
+            clearInterval(timer);
+            timer = setInterval(moveToNextImage, 5000);
+            document.getElementById("timer").innerHTML = "10";
+        } else {
+            document.getElementById("timer").innerHTML = timerCount - 1;
+        }
+    }
+
+    var timer = setInterval(moveToNextImage, 1000);
+
+
+</script>
+
+</html>
